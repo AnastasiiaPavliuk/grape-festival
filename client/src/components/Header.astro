@@ -1,0 +1,45 @@
+<style>
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s_2) ;
+  background-color: var(--c-bg2);
+  color: var(--c-light);
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+    align-items: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--c-light);
+  font-size: var(--fs-s);
+  font-weight: 800;
+  padding: var(--s_1);
+  display: block;
+}
+
+.nav__item {
+  margin-right: clamp(0.5rem, 15vw, 35rem); /* Minimum 20px, 2% of viewport width, Maximum 40px */
+}
+
+.nav__item:last-child {
+  margin-right: 0;
+}
+</style>
+
+<header class="header">
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__item"><a href="" class="nav__link">Grape festival</a></li>
+            <li class="nav__item"><a href="" class="nav__link">Home</a></li>
+            <li class="nav__item"><a href="" class="nav__link">Speakers</a></li>
+            <li class="nav__item"><a href="/schedule" class="nav__link">Schedule</a></li>
+            <li class="nav__item"><a href="" class="nav__link">Buy Tickets</a></li>
+        </ul>
+    </nav>
+</header>

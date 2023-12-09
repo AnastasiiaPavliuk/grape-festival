@@ -1,0 +1,111 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+main{
+    padding: var(--s_1);
+}
+
+:root {
+    /* Spacing */
+    --s_2: .1rem;
+    --s_1: .5rem;
+    --s1: 1rem;
+    --s2: 1.2rem;
+    --s3: 1.5rem;
+    --s4: 2rem;
+
+    /* Font Sizes with clamp */
+    --fs-s: clamp(0.75rem, 1vw, 0.8rem);
+    --fs-m: clamp(0.875rem, 1.5vw, 1rem);
+    --fs-l: clamp(1.2rem, 2.5vw, 1.25rem);
+    --fs-xl: clamp(1.5rem, 3.5vw, 2rem);
+    --fs-huge: clamp(5rem, 15vw, 17rem);
+    /* Color Palette */
+    --c-bg1: rgb(235, 238, 237);
+    /* Light background */
+    --c-bg2: #232726;
+    /* Dark background for contrast */
+    --c-green: rgb(39, 189, 84);
+
+    --c-dark: #333333;
+    /* Dark text */
+    --c-light: #f5f5f5;
+    /* Light text */
+    --c-primary: #e3e3e3;
+    /* Primary color */
+
+    --border-radius: .25rem;
+    --border-radius-xl: 1rem;
+
+
+}
+
+body {
+    line-height: 1.5;
+    color: var(--c-dark);
+    background-color: var(--c-bg1);
+    font-family: Helvetica, sans-serif;
+
+    /* Responsive font size for body text */
+    font-size: var(--fs-m);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+
+h1 {
+    /* Responsive font size for h1 */
+    font-size: var(--fs-xl);
+}
+
+h2 {
+    /* Responsive font size for h2 */
+    font-size: var(--fs-l);
+}
+
+.hidden {
+    display: none;
+}
+
+.button {
+    padding: var(--s_1) var(--s2);
+    border: none;
+    font-size: var(--fs-l);
+    cursor: pointer;
+}
+
+.button--primary {
+    background-color: var(--c-primary);
+    color: var(--c-bg2);
+    text-transform: uppercase;
+}

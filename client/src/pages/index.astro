@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+---
+
+<style>
+	.content__heading {
+		font-size: var(--fs-huge);
+		line-height: normal;
+	}
+
+	.content__flex {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.content__text {
+		font-weight: 400;
+		font-size: var(--fs-m);
+		max-width: 70%;
+		line-height: 150%;
+	}
+</style>
+
+<BaseLayout>
+	<div class="content__flex">
+		<p class="festival__date">24-25 June</p>
+		<p class="festival__location">Saint-Rémy-de-Provence, France</p>
+	</div>
+	<p class="content__heading">Grape Festival</p>
+	<p class="content__text">
+		Grape Festival is not only about wine, do you believe that? Dive into
+		the world of grapes like never before at our unique Grape Festival! This
+		extraordinary event celebrates the versatility and beauty of grapes,
+		transcending beyond the realm of wine.
+	</p>
+</BaseLayout>

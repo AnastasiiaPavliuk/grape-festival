@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+const { event } = Astro.props;
+---
+
+<div class="schedule__slot">
+    <div class="schedule__slot__time">
+        <span class="schedule__slot__time__start">{event.attributes.time_start}</span
+        >
+        <span class="schedule__slot__time__separator">-</span>
+        <span class="schedule__slot__time__end">{event.attributes.time_finish}</span>
+    </div>
+    <div class="schedule__slot__content__title">
+        <p>{event.attributes.title}</p>
+    </div>
+    <div class="schedule__slot__content__speaker">
+        <p>{event.attributes.speaker}</p>
+        {/* link to speaker */}
+    </div>
+
+    <div class="schedule__location">
+        <p>Location</p>
+        {/* You might want to add a location attribute in your event object */}
+    </div>
+
+    <div class="event-image">
+    {
+      event.attributes.speaker_image?.data?.attributes.url &&
+      (
+      <Image
+          src={`${import.meta.env.STRAPI_URL}${
+          event.attributes.speaker_image?.data?.attributes.url
+        }`}
+        alt="Event image"
+        width="420"
+        height="300"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+      )
+    }
+  </div>
+</div>
+
+{/* Your style */}
