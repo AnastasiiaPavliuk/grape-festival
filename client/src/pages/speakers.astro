@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import fetchApi from "../lib/strapi.js";
+import { Image } from "astro:assets";
+
+const speakers = await fetchApi({
+  endpoint: "speakers",
+  wrappedByKey: "data",
+  query: {
+    populate: ["*"],
+  },
+});
+---
+
+<style>
+  .speaker__container {
+    flex: 0 0 50%;
+    margin: var(--s_1);
+    padding: var(--s1);
+    background-color: var(--c-bg2);
+    color: white;
+  }
+
+  .content--grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+</style>
+
+<BaseLayout>
+  <section>
+    <h1>Speakers</h1>
+    <div class="content--grid">
+      {
+        speakers.map((speaker) => (
+          <div class="speaker__container" key={speaker.id}>
+            <div class="speaker-image">
+              {speaker.attributes.image?.data?.attributes.url ? (
+                <Image
+                  src={`${import.meta.env.STRAPI_URL}${
+                    speaker.attributes.image.data.attributes.url
+                  }`}
+                  alt="Speaker image"
+                  width="420"
+                  height="300"
+                  widths={[250, 350, 500, 750]}
+                  sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+                />
+              ) : null}
+            </div>
+            <p>{speaker.attributes.name}</p>
+            <p>{speaker.attributes.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

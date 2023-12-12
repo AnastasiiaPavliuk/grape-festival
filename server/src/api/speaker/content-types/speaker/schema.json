@@ -4,7 +4,8 @@
   "info": {
     "singularName": "speaker",
     "pluralName": "speakers",
-    "displayName": "speaker"
+    "displayName": "speaker",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,23 +16,29 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "description": {
       "type": "text"
     },
-    "location": {
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    },
+    "speaker": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::location.location",
-      "inversedBy": "speakers"
+      "target": "api::event.event",
+      "inversedBy": "speaker"
     }
   }
 }

@@ -3,11 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ScheduleSlot from "../components/ScheduleSlot.astro";
 import fetchApi from "../lib/strapi.js";
 
+
 const events = await fetchApi({
   endpoint: "events",
   wrappedByKey: "data",
-  query: { populate: ["*"] },
+  query: { 
+    populate: ["speaker", "location", "*"]
+  },
 });
+
 ---
 
 <BaseLayout>
