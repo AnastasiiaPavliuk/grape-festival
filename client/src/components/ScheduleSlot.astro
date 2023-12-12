@@ -1,14 +1,28 @@
 ---
 const { event } = Astro.props;
+const { speakers } = Astro.props;
 ---
 
-<p>slot component </p> 
+<style></style>
+
+<div class={event.id} class="schedule__slot">
   <div class="schedule__slot__time">
-    <span class="schedule__slot__time__start">{event.attributes.time_start}</span>
+    <span class="schedule__slot__time__start">
+      {event.attributes.time_start}
+    </span>
     <span class="schedule__slot__time__separator">-</span>
-    <span class="schedule__slot__time__end">{event.attributes.time_finish}</span>
+    <span class="schedule__slot__time__end">
+      {event.attributes.time_finish}
+    </span>
   </div>
   <div class="schedule__slot__content">
     <h3 class="schedule__slot__content__title">{event.attributes.title}</h3>
-    <p class="schedule__slot__content__speaker">Speaker: {event.attributes.speaker}</p>
+{
+  event.attributes.speaker?.data && (
+    <p class="schedule__slot__content__speaker">
+      Speaker: {event.attributes.speaker.data.attributes.name}
+    </p>
+  )
+}
   </div>
+</div>

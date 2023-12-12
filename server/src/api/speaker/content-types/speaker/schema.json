@@ -33,12 +33,6 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tag.tag"
-    },
-    "speaker": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::event.event",
-      "inversedBy": "speaker"
     }
   }
 }

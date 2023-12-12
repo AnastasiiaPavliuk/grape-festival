@@ -25,9 +25,13 @@
     },
     "speaker": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::speaker.speaker",
-      "mappedBy": "speaker"
+      "relation": "oneToOne",
+      "target": "api::speaker.speaker"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location.location"
     }
   }
 }

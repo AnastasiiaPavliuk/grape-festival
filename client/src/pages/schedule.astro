@@ -3,24 +3,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ScheduleSlot from "../components/ScheduleSlot.astro";
 import fetchApi from "../lib/strapi.js";
 
-
 const events = await fetchApi({
   endpoint: "events",
   wrappedByKey: "data",
-  query: { 
-    populate: ["speaker", "location", "*"]
+  query: {
+    populate: ["*", "speaker", "location"],
   },
 });
 
+// const speakers = await fetchApi({
+//   endpoint: "speakers",
+//   wrappedByKey: "data",
+//   query: { populate: ["*"] },
+// });
+
+// const { event } = Astro.props;
 ---
 
 <BaseLayout>
   <section class="schedule">
-    <h2>Schedule</h2>
+    <h2 class="heading-s">Schedule.</h2>
     {events.map((event) => (
-      <div key={event.id} class="schedule__slot">
-        <ScheduleSlot event={event} />
-      </div>
+      <ScheduleSlot event={event} />
     ))}
   </section>
 </BaseLayout>

@@ -109,3 +109,11 @@ h2 {
     color: var(--c-bg2);
     text-transform: uppercase;
 }
+
+.heading-s{
+    line-height: auto;
+    font-size: var(--fs-xl);
+    text-transform: uppercase;
+    width: fit-content;
+    margin: auto;
+}

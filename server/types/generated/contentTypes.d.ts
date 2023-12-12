@@ -694,8 +694,13 @@ export interface ApiEventEvent extends Schema.CollectionType {
     Title: Attribute.String;
     speaker: Attribute.Relation<
       'api::event.event',
-      'oneToMany',
+      'oneToOne',
       'api::speaker.speaker'
+    >;
+    location: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'api::location.location'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -765,11 +770,6 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
       'api::speaker.speaker',
       'oneToMany',
       'api::tag.tag'
-    >;
-    speaker: Attribute.Relation<
-      'api::speaker.speaker',
-      'manyToOne',
-      'api::event.event'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
