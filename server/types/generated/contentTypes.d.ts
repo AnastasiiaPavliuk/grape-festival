@@ -691,7 +691,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
   attributes: {
     time_start: Attribute.Time & Attribute.DefaultTo<'10:00'>;
     time_finish: Attribute.Time & Attribute.DefaultTo<'10:00'>;
-    Title: Attribute.String;
+    title: Attribute.String;
     speaker: Attribute.Relation<
       'api::event.event',
       'oneToOne',
@@ -702,6 +702,9 @@ export interface ApiEventEvent extends Schema.CollectionType {
       'oneToOne',
       'api::location.location'
     >;
+    date: Attribute.Date & Attribute.DefaultTo<'2023-06-24'>;
+    description: Attribute.Text;
+    tags: Attribute.Relation<'api::event.event', 'oneToMany', 'api::tag.tag'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

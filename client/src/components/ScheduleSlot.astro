@@ -1,28 +1,89 @@
 ---
 const { event } = Astro.props;
 const { speakers } = Astro.props;
+
+const time_start = event.attributes.time_start;
+
+const time_finish = event.attributes.time_finish;
+
+
 ---
 
-<style></style>
+<style>
+  body{
+    background-color: var(--c-bg2);
+    font-weight: 800;
+    line-height: 1em;
+  }
 
-<div class={event.id} class="schedule__slot">
-  <div class="schedule__slot__time">
-    <span class="schedule__slot__time__start">
-      {event.attributes.time_start}
+  .schedule__slot{
+    background-color: rgba(182, 182, 182, 0.8);
+    padding: var(--s_1);
+    margin-top: var(--s1);
+    max-width: 70%;
+    color: var(--c-light);
+  }
+
+  .schedule__slot:has(.slot__speaker){
+   background-color: var(--c-light);
+   color: var(--c-bg2);
+  }
+
+
+  .slot--row{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .slot__title{
+    text-transform: uppercase;
+    font-size: var(--fs-xl);
+    font-weight: 500;
+  }
+
+  .heading{
+    color: var(--c-light);
+  }
+
+
+  /* .slot__location{
+
+  } */
+
+</style>
+
+
+  <!-- {event.attributes.date === "2023-06-24" ? 
+     <p class="heading" >24th of June</p> : <p>25</p>} -->
+     
+<div id={event.id} class="schedule__slot">
+  
+  <!-- <p>{event.attributes.date}</p> -->
+
+  <div class="slot__time">
+    <span class="slot__time__start">
+      {time_start.slice(0, 5)}
     </span>
-    <span class="schedule__slot__time__separator">-</span>
-    <span class="schedule__slot__time__end">
-      {event.attributes.time_finish}
+
+    <span class="slot__time__separator">-</span>
+    <span class="slot__time__end">
+      {time_finish.slice(0, 5)}
     </span>
   </div>
-  <div class="schedule__slot__content">
-    <h3 class="schedule__slot__content__title">{event.attributes.title}</h3>
-{
-  event.attributes.speaker?.data && (
-    <p class="schedule__slot__content__speaker">
-      Speaker: {event.attributes.speaker.data.attributes.name}
-    </p>
-  )
-}
+  <div class="slot__content">
+    <h3 class="slot__title">{event.attributes.title}</h3>
+    <div class="slot--row">
+      <p class="slot__location">
+        Location" {event.attributes.location.data.attributes.name}
+      </p>
+    {
+      event.attributes.speaker?.data && (
+        <p class="slot__speaker">
+          Speaker" {event.attributes.speaker.data.attributes.name}
+        </p>
+      )
+    }
+  </div>
   </div>
 </div>
