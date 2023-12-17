@@ -1,9 +1,12 @@
 ---
 import BlogSlot from "../components/BlogSlot.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-// import SectionAbout from "../components/SectionAbout.astro"
 const blogPosts = await Astro.glob("../pages/content/*.md");
+
+const aboutText = [
+	"Grape Festival is not only about wine, do you believe that? Dive into the world of grapes like never before at our unique Grape Festival! This extraordinary event celebrates the versatility and beauty of grapes, transcending beyond the realm of wine.",
+	"But that's not all! Our festival is family-friendly, featuring interactive and fun-filled workshops designed especially for kids. These engaging activities not only educate the younger generation about the importance of agriculture and healthy eating but also let them explore their creativity through grape-themed crafts and games.",
+];
 ---
 
 <style>
@@ -20,7 +23,7 @@ const blogPosts = await Astro.glob("../pages/content/*.md");
 		line-height: 1em;
 	}
 
-	.content__flex{
+	.content__flex {
 		gap: var(--s1);
 	}
 </style>
@@ -33,30 +36,18 @@ const blogPosts = await Astro.glob("../pages/content/*.md");
 		</div>
 		<p class="content__heading">Grape Festival</p>
 		<p class="content__text">
-			Grape Festival is not only about wine, do you believe that? Dive
-			into the world of grapes like never before at our unique Grape
-			Festival! This extraordinary event celebrates the versatility and
-			beauty of grapes, transcending beyond the realm of wine.
+			{aboutText[0]}
 		</p>
 		<p class="content__text">
-			But that's not all! Our festival is family-friendly, featuring
-			interactive and fun-filled workshops designed especially for kids.
-			These engaging activities not only educate the younger generation
-			about the importance of agriculture and healthy eating but also let
-			them explore their creativity through grape-themed crafts and games.
+			{aboutText[1]}
 		</p>
-<h2 class="heading-s"> Blog.</h2>	
-		
-<div class="blog-posts content__flex">
-  {
-    blogPosts.map(post => (
-      <BlogSlot 
-        title={post.frontmatter.title} 
-        description={post.frontmatter.description} 
-        url={post.url}
-      />
-    ))
-  }
-</div>
+		<h2 class="heading-s">Blog.</h2>
+		<div class="blog-posts content__flex">
+			{
+				blogPosts.map((post) => (
+					<BlogSlot title={post.frontmatter.title} description={post.frontmatter.description} url={post.url}/>
+				))
+			}
+		</div>
 	</section>
 </BaseLayout>

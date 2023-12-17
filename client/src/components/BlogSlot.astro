@@ -3,24 +3,24 @@ const { title, description, url } = Astro.props;
 ---
 
 <style>
-    .link{
-        text-decoration: none;
-        color: var(--c-dark);
-    }
+  .link {
+    text-decoration: none;
+    color: var(--c-dark);
+  }
 
-    .blog_element{
-        background-color: white;
-        padding: var(--s_1);
-        max-width: 25%;
-        border: 1px solid #ccc;
-    }
+  .blog_element {
+    background-color: white;
+    padding: var(--s_1);
+    max-width: 25%;
+    border: 1px solid #ccc;
+  }
 
-    .blog_element:hover{
-        border-color: var(--c-dark);
-        cursor: pointer;
-    }
+  .blog_element:hover {
+    border-color: var(--c-dark);
+    cursor: pointer;
+  }
 
-    .description {
+  .description {
     font-size: var(--fs-s);
     color: var(--c-dark);
     overflow: hidden;
@@ -28,16 +28,14 @@ const { title, description, url } = Astro.props;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
-    }
-
-
+  }
 </style>
+
 <article class="blog_element">
-<a href={url} class="link">
-  <article class="blog-element">
-    <h2>{title}</h2>
-    <p class="description">{description}</p>
-  </article>
-</a>
+  <a href={url} class="link">
+    <article class="blog-element">
+      <h2>{title}</h2>
+      <p class="description">{description}</p>
+    </article>
+  </a>
 </article>
