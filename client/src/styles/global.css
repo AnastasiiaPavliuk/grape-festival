@@ -117,3 +117,13 @@ h2 {
     width: fit-content;
     margin: auto;
 }
+
+.content__flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+section{
+    margin-bottom: 200px;
+}

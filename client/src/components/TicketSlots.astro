@@ -1,0 +1,67 @@
+---
+const { name, price, description, includes, buttonLink, available } = Astro.props;
+---
+
+<style>
+
+
+    .ticket__slot{
+        /* background-color: var(--c-light); */
+        background-color: var(--c-dark);
+        color: white;
+        /* border: black solid 2px; */
+        margin: var(--s2);
+        padding: var(--s1);
+        display: flex;
+        flex-direction: column;
+        gap: var(--s1);
+        min-width: 220px;
+        height: fit-content;
+    }
+
+    .ticket__slot--available {
+        background-color: var(--c-dark);
+        color: white;
+    }
+
+    .ticket__slot--sold_out {
+        background-color: #ccc;
+        color: #6d6d6d;
+    }
+
+    .ticket__title{
+        font-size: var(--fs-l);
+        font-weight: 700;
+    }
+
+    .ticket__list{
+        margin-left: var(--s2);
+        list-style: circle;
+        text-transform: capitalize;
+        font-size: var(--fs-s);
+    }
+
+    .ticket__price{
+        font-weight: 700;
+    }
+
+</style>
+
+<div class={`ticket__slot 
+${available ? 'ticket__slot--available' 
+: 'ticket__slot--sold_out'}`}>
+  <h3 class="ticket__title">{name}</h3>
+  <p class="ticket__description">{description}</p>
+  <ul class="ticket__list">
+    {includes.map((item) => (
+      <li class="ticket__list-item">{item}</li>
+    ))}
+  </ul>
+  <p class="ticket__price">Price: {price}</p>
+{
+  available ? 
+  (<a href= {buttonLink} class="button button--primary">Buy Now</a>) 
+  : 
+  (<button class="button button--primary" disabled>Sold Out</button>)
+}
+</div>

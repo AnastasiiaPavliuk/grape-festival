@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TicketSlots from "../components/TicketSlots.astro";
+
+const ticketSlots = [
+      { 
+    name: 'Greener',
+    price: '€49.10',
+    description: 'Enjoy extended benefits and ensure a memorable time with this ticket.',
+    includes: [
+      '2 days',
+      'special guests',
+      'comfort place in lecture room',
+      'all type of events',
+      'standard parking spot',
+      '4 hours a day playground for kid'
+    ],
+    buttonLink: '#',
+    available: true,
+  },
+  { 
+    name: 'The greenest',
+    price: '€69.10',
+    description: 'This ticket provides an all-access experience for the most dedicated attendees.',
+    includes: [
+      '2 days',
+      'special guests',
+      'breakfast vouchers for 2 days',
+      'comfort place in lecture room',
+      'first row parking',
+      'all type of events',
+      'unlimited playground for kid'
+    ],
+    buttonLink: '#',
+    available: true
+  },
+  { 
+    name: 'Green',
+    price: '€26.10',
+    description: 'A standard ticket that covers most needs for a fun experience.',
+    includes: [
+      '2 days',
+      'all types of events',
+      '2 hours a day for free playground for kid'
+    ],
+    buttonLink: '#',
+    available: false
+  }
+];
+---
+
+<style>
+
+.tickets-section{
+    margin: 2rem;
+}
+
+.content__flex{
+    align-items: center;
+}
+</style>
+
+
+<BaseLayout>
+    <section class="tickets-section">
+        <h1 class="heading-s">Tickets</h1>
+    <div class="tickets content__flex">
+    {ticketSlots.map(slot => (
+      <TicketSlots 
+      name={slot.name}
+      price={slot.price}
+      description={slot.description}
+      includes={slot.includes}
+      buttonLink = {slot.buttonLink}
+      available ={slot.available}
+      />
+    ))}
+   </div>
+
+   
+    </section>
+</BaseLayout>

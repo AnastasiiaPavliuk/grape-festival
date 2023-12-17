@@ -1,5 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionAbout from "../components/SectionAbout.astro"
+const posts = await Astro.glob("../pages/content/*.md");
+// const { frontmatter } = Astro.props;
+
+// console.log(frontmatter);
+
+const list = await Astro.glob('../pages/content/pinpoints.md');
 ---
 
 <style>
@@ -8,11 +15,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: normal;
 	}
 
-	.content__flex {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
+
 
 	.content__text {
 		font-weight: 400;
