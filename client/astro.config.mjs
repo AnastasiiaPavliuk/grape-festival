@@ -1,8 +1,9 @@
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
 export default defineConfig({
+    site: "https://anastasiiapavliuk.be/",
+    base: "grapefestival",
     image: {
-        domains: ["localhost"],
+        domains: ["localhost:4321/"],
     },
 });

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "locations",
+  "collectionName": "tags",
   "info": {
-    "singularName": "location",
-    "pluralName": "locations",
-    "displayName": "Location",
+    "singularName": "tag",
+    "pluralName": "tags",
+    "displayName": "Tag",
     "description": ""
   },
   "options": {
@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "tag": {
       "type": "string"
     }
   }

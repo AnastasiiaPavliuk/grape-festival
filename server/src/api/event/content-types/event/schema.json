@@ -13,32 +13,37 @@
   "pluginOptions": {},
   "attributes": {
     "time_start": {
-      "type": "time"
-    },
-    "speaker": {
-      "type": "string"
-    },
-    "speaker_image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "type": "time",
+      "default": "10:00"
     },
     "time_finish": {
-      "type": "time"
+      "type": "time",
+      "default": "10:00"
     },
     "title": {
       "type": "string"
+    },
+    "speaker": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::speaker.speaker"
     },
     "location": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::location.location"
+    },
+    "date": {
+      "type": "date",
+      "default": "2023-06-24"
+    },
+    "description": {
+      "type": "text"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
     }
   }
 }

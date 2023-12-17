@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+const { speakers } = Astro.props;
+---
+
+<style>
+  .speaker__container {
+    max-width: 70%;
+    margin: var(--s_1);
+    padding: var(--s1);
+  }
+
+  .speaker__name {
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    margin-top: var(--s_1);
+  }
+
+  .speaker__description {
+    margin-bottom: var(--s_1);
+    line-height: 1em;
+    font-size: var(--fs-l);
+  }
+</style>
+{
+  speakers.map((speaker) => (
+    <div class="speaker__container">
+      <div class="speaker__image">
+        {speaker.attributes.image?.data?.attributes.url ? (
+          <Image
+            src={`${import.meta.env.STRAPI_URL}${
+              speaker.attributes.image.data.attributes.url
+            }`}
+            alt={`${speaker.attributes.name}`}
+            width="320"
+            height="200"
+            widths={[250, 350, 500, 750]}
+            sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+          />
+        ) : null}
+      </div>
+      <p class="speaker__name">{speaker.attributes.name}</p>
+      <p class="speaker__description">{speaker.attributes.description}</p>
+    </div>
+  ))
+}

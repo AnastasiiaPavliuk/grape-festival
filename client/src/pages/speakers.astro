@@ -1,0 +1,31 @@
+---
+import SpeakerSlot from "../components/SpeakerSlot.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import fetchApi from "../lib/strapi.js";
+// import { Image } from "astro:assets";
+
+const speakers = await fetchApi({
+  endpoint: "speakers",
+  wrappedByKey: "data",
+  query: { populate: ["*"] },
+});
+---
+
+<style>
+  .content--grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+</style>
+
+<BaseLayout>
+  <section>
+    <h1 class="heading-s">Speakers.</h1>
+    <div class="content--grid">
+      <SpeakerSlot speakers={speakers} />
+    </div>
+  </section>
+</BaseLayout>

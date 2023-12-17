@@ -24,9 +24,8 @@
 }
 
 .nav__item {
-  margin-right: clamp(0.5rem, 15vw, 35rem); /* Minimum 20px, 2% of viewport width, Maximum 40px */
+  margin-right: clamp(0.5rem, 15vw, 35rem);
 }
-
 .nav__item:last-child {
   margin-right: 0;
 }
@@ -35,11 +34,10 @@
 <header class="header">
     <nav class="nav">
         <ul class="nav__list">
-            <li class="nav__item"><a href="" class="nav__link">Grape festival</a></li>
-            <li class="nav__item"><a href="" class="nav__link">Home</a></li>
-            <li class="nav__item"><a href="" class="nav__link">Speakers</a></li>
-            <li class="nav__item"><a href="/schedule" class="nav__link">Schedule</a></li>
-            <li class="nav__item"><a href="" class="nav__link">Buy Tickets</a></li>
+            <li class="nav__item"><a class="nav__link" href={import.meta.env.BASE_URL} >Home</a></li>
+            <li class="nav__item"><a class="nav__link" href={`${import.meta.env.BASE_URL}/schedule`} >Schedule</a></li>
+            <li class="nav__item"><a class="nav__link" href={`${import.meta.env.BASE_URL}/speakers`}>Speakers</a></li>
+            <li class="nav__item"><a class="nav__link" href={`${import.meta.env.BASE_URL}/tickets`} >Buy Tickets</a></li>
         </ul>
     </nav>
 </header>

@@ -6,17 +6,56 @@ import fetchApi from "../lib/strapi.js";
 const events = await fetchApi({
   endpoint: "events",
   wrappedByKey: "data",
-  query: { populate: ["*"] },
+  query: {
+    // populate: ["*", "speaker", "location",],
+    populate: ["*"],
+  },
 });
+
+const groupEventsByDate = (events) => {
+  return events.reduce((groups, event) => {
+    const date = event.attributes.date;
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(event);
+    return groups;
+  }, {});
+};
+
+const groupedEvents = groupEventsByDate(events);
 ---
+
+<style>
+  .heading-s {
+    color: var(--c-light);
+  }
+
+  .heading {
+    color: var(--c-light);
+    width: fit-content;
+    margin: var(--s1) auto;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: var(--fs-l);
+  }
+</style>
 
 <BaseLayout>
   <section class="schedule">
-    <h2>Schedule</h2>
-    {events.map((event) => (
-      <div key={event.id} class="schedule__slot">
-        <ScheduleSlot event={event} />
-      </div>
-    ))}
+    <h2 class="heading-s">Schedule.</h2>
+
+    {
+      Object.keys(groupedEvents).map((date) => (
+        <>
+          <h3 class="heading">
+            {date === "2023-06-24" ? "24th of June" : "25th of June"}
+          </h3>
+          {groupedEvents[date].map((event) => (
+            <ScheduleSlot event={event} />
+          ))}
+        </>
+      ))
+    }
   </section>
 </BaseLayout>

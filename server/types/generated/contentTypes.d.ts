@@ -689,16 +689,22 @@ export interface ApiEventEvent extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    time_start: Attribute.Time;
-    speaker: Attribute.String;
-    speaker_image: Attribute.Media;
-    time_finish: Attribute.Time;
+    time_start: Attribute.Time & Attribute.DefaultTo<'10:00'>;
+    time_finish: Attribute.Time & Attribute.DefaultTo<'10:00'>;
     title: Attribute.String;
+    speaker: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'api::speaker.speaker'
+    >;
     location: Attribute.Relation<
       'api::event.event',
       'oneToOne',
       'api::location.location'
     >;
+    date: Attribute.Date & Attribute.DefaultTo<'2023-06-24'>;
+    description: Attribute.Text;
+    tags: Attribute.Relation<'api::event.event', 'oneToMany', 'api::tag.tag'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -730,11 +736,6 @@ export interface ApiLocationLocation extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    speakers: Attribute.Relation<
-      'api::location.location',
-      'oneToMany',
-      'api::speaker.speaker'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -759,6 +760,7 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
     singularName: 'speaker';
     pluralName: 'speakers';
     displayName: 'speaker';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -767,10 +769,10 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
     name: Attribute.String;
     image: Attribute.Media;
     description: Attribute.Text;
-    location: Attribute.Relation<
+    tags: Attribute.Relation<
       'api::speaker.speaker',
-      'manyToOne',
-      'api::location.location'
+      'oneToMany',
+      'api::tag.tag'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -786,6 +788,29 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Schema.CollectionType {
+  collectionName: 'tags';
+  info: {
+    singularName: 'tag';
+    pluralName: 'tags';
+    displayName: 'Tag';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    tag: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -809,6 +834,7 @@ declare module '@strapi/types' {
       'api::event.event': ApiEventEvent;
       'api::location.location': ApiLocationLocation;
       'api::speaker.speaker': ApiSpeakerSpeaker;
+      'api::tag.tag': ApiTagTag;
     }
   }
 }
