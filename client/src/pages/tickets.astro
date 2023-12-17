@@ -15,7 +15,7 @@ const ticketSlots = [
       'standard parking spot',
       '4 hours a day playground for kid'
     ],
-    buttonLink: '#',
+    buttonLink: `${import.meta.env.BASE_URL}/tickets/#`,
     available: true,
   },
   { 
@@ -31,7 +31,7 @@ const ticketSlots = [
       'all type of events',
       'unlimited playground for kid'
     ],
-    buttonLink: '#',
+    buttonLink: `${import.meta.env.BASE_URL}/tickets/#`,
     available: true
   },
   { 
@@ -43,10 +43,13 @@ const ticketSlots = [
       'all types of events',
       '2 hours a day for free playground for kid'
     ],
-    buttonLink: '#',
+    buttonLink: `${import.meta.env.BASE_URL}/tickets/#`,
     available: false
   }
 ];
+
+const note = "Children under the age of 12 attend for free when accompanied by a paying adult. Please note that all children must be supervised at all times, ensuring a safe and enjoyable experience for everyone. Remember to bring proof of age for free children's entry. Let's create unforgettable memories for the whole family!";
+
 ---
 
 <style>
@@ -58,12 +61,13 @@ const ticketSlots = [
 .content__flex{
     align-items: center;
 }
+
 </style>
 
 
 <BaseLayout>
     <section class="tickets-section">
-        <h1 class="heading-s">Tickets</h1>
+        <h1 class="heading-s">Tickets.</h1>
     <div class="tickets content__flex">
     {ticketSlots.map(slot => (
       <TicketSlots 
@@ -76,7 +80,9 @@ const ticketSlots = [
       />
     ))}
    </div>
+   <div class="note">
+    <p> Note: {note}</p>
+   </div>
 
-   
     </section>
 </BaseLayout>
